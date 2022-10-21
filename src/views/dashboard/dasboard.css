@@ -4,3 +4,11 @@
     justify-content: flex-start;
     gap: 5%;
 }
+
+.modal {}
+
+.modalContainer {
+    padding: 10%;
+    background: #727f7238;
+    /* opacity: 0.5; */
+}
