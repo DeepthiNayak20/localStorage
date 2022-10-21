@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
+import { DashBoard } from "../../views/dashboard/dashboard";
+import "./signUp.css";
+import { useNavigate } from "react-router-dom";
 
 const SignUP = () => {
+  const navigate = useNavigate();
   // console.log("users", convertedUsers);
 
   const convertedUsers = localStorage.getItem("users") || "[]";
@@ -23,33 +27,15 @@ const SignUP = () => {
       cPassword,
     };
 
-    // localStorage.setItem("users", JSON.stringify(userData));
-
     const previousData = JSON.parse(localStorage.getItem("users") || "[]");
     console.log("previousData", previousData);
 
-    // previousData.map((user: any) => {
-    //   console.log("user", userData.userName);
-    //   if (userData.userName === user.userName) {
-    //     setExist(true);
-    //     break();
-    //   }
-    // });
-
-   
-
-    // for (let i = 0; i < previousData.length; i++) {
-    //   if (userData.userName === previousData[i].userName) {
-    //     arr.push("exist");
-
-    //     break;
-    //   }
-    // }
-    const arr:any[] = [];
-    previousData.map((user:any)=>{
+    const arr: any[] = [];
+    previousData.map((user: any) => {
       if (userData.userName === user.userName) {
-        arr.push("exist");}
-    })
+        arr.push("exist");
+      }
+    });
 
     if (arr.includes("exist")) {
       alert("user already exist");
@@ -64,6 +50,9 @@ const SignUP = () => {
           previousData.push(userData);
 
           localStorage.setItem("users", JSON.stringify(previousData));
+          localStorage.setItem("auth", "true");
+          navigate("/dashboard");
+          window.location.reload();
         } else {
           alert("password mismatch");
         }
@@ -73,21 +62,53 @@ const SignUP = () => {
 
   return (
     <div>
-      <h1>sign up</h1>
-      <form onSubmit={signUpHandler}>
-        <input type="text" placeholder="username" name="userName" />
-        <div>
-          designation
-          <select name="designation">
-            <option value="student">student</option>
-            <option value="student">Employee</option>
-          </select>
+      <div className="signUpContainer">
+        <div className="cardContainer">
+          <div className="signUpHead">sign up</div>
+          <div className="formContainer">
+            <form onSubmit={signUpHandler} className="formContain">
+              <div className="userName">
+                <input
+                  type="text"
+                  placeholder="username"
+                  name="userName"
+                  className="inputField"
+                />
+              </div>
+              <div className="designation">
+                <select name="designation" className="inputField">
+                  <option value="student">student</option>
+                  <option value="student">Employee</option>
+                </select>
+              </div>
+              <div className="password">
+                <input
+                  type="text"
+                  placeholder="new Password"
+                  name="password"
+                  className="inputField"
+                />
+                <img
+                  src={require("../../assets/icons/eye_on.png")}
+                  alt=""
+                  className="eyeIcon"
+                />
+              </div>
+              <div className="password">
+                <input
+                  type="text"
+                  placeholder="confirm password"
+                  name="cPassword"
+                  className="inputField"
+                />
+              </div>
+              <div className="btn">
+                <input type="submit" value="save" className="btnSubmit" />
+              </div>
+            </form>
+          </div>
         </div>
-        <input type="text" placeholder="new Password" name="password" />
-        <input type="text" placeholder="confirm password" name="cPassword" />
-        <input type="submit" value="save" />
-        {/* <button>button</button> */}
-      </form>
+      </div>
     </div>
   );
 };

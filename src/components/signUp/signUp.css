@@ -1,0 +1,100 @@
+.signUpContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* gap: 1rem; */
+    background-color: lavender;
+    border: 1px solid;
+    padding: 10%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+}
+
+.signUpHead {
+    text-align: center;
+    margin-bottom: 10px;
+    color: blue;
+    font-weight: 400;
+    font-size: 31px;
+    text-transform: uppercase;
+}
+
+.cardContainer {
+
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(45deg, #1a986e70, transparent);
+    box-shadow: 17px 21px 31px;
+    /* opacity: 0.5; */
+    flex-direction: column;
+    border: 1px solid #ff000057;
+    padding: 4%;
+    height: auto;
+    border-radius: 18px;
+    width: 50%;
+}
+
+.inputField {
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.btnSubmit {
+    padding: 0.5rem 1rem;
+    background: blue;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formContain {
+    width: 100%;
+    ;
+}
+
+.password {}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password {
+    position: relative;
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+}
+
+
+@media screen and (max-width:510px) {
+    .cardContainer {
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    }
+
+}
