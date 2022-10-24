@@ -3,8 +3,15 @@ import { useState } from "react";
 
 export const DashBoard = () => {
   const [modal, setModal] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [value, setValue] = useState({
+    userName: "",
+    designation: "",
+    password: "",
+    cPassword: "",
+  });
 
-  const [index, setindex] = useState(0);
+  const [index, setindex] = useState<any>(null);
 
   const displayData = JSON.parse(localStorage.getItem("users") || "[]");
   console.log(displayData);
@@ -33,8 +40,12 @@ export const DashBoard = () => {
     localStorage.setItem("users", JSON.stringify(displayData));
     console.log(displayData);
 
-    window.location.reload()
+    window.location.reload();
   };
+  const editHandler = (e: any) => {
+    setValue(e.target.value);
+  };
+  console.log(displayData[index]);
 
   return (
     <div>
@@ -83,10 +94,21 @@ export const DashBoard = () => {
                       placeholder="username"
                       name="userName"
                       className="inputField"
+                      onChange={editHandler}
+                      value={
+                        edit ? value.userName : displayData[index].userName
+                      }
                     />
                   </div>
                   <div className="designation">
-                    <select name="designation" className="inputField">
+                    <select
+                      name="designation"
+                      className="inputField"
+                      onChange={editHandler}
+                      value={
+                        edit ? value.userName : displayData[index].designation
+                      }
+                    >
                       <option value="student">student</option>
                       <option value="student">Employee</option>
                     </select>
@@ -97,6 +119,10 @@ export const DashBoard = () => {
                       placeholder="new Password"
                       name="password"
                       className="inputField"
+                      onChange={editHandler}
+                      value={
+                        edit ? value.userName : displayData[index].password
+                      }
                     />
                     <img
                       src={require("../../assets/icons/eye_on.png")}
@@ -110,10 +136,31 @@ export const DashBoard = () => {
                       placeholder="confirm password"
                       name="cPassword"
                       className="inputField"
+                      onChange={editHandler}
+                      value={
+                        edit ? value.userName : displayData[index].cPassword
+                      }
                     />
                   </div>
                   <div className="btn">
-                    <input type="submit" value="save" className="btnSubmit" />
+                    {modal ? (
+                      <div>
+                        {!edit ? (
+                          <button type="button" onClick={() => setEdit(true)}>
+                            click to Edit
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    {edit ? (
+                      <input type="submit" value="save" className="btnSubmit" />
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </form>
               </div>
